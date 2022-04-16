@@ -1,0 +1,61 @@
+definitions:
+  main.Event:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+host: new-events-api.herokuapp.com
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Documentação da API de eventos.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Events API
+  version: "1.0"
+paths:
+  /event:
+    post:
+      consumes:
+      - application/json
+      description: Creater new events
+      parameters:
+      - description: Events
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/main.Event'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Event'
+      summary: New event
+      tags:
+      - events
+  /events:
+    get:
+      consumes:
+      - application/json
+      description: List all events
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Event'
+      summary: Show all events
+      tags:
+      - events
+swagger: "2.0"
