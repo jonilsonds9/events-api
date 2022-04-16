@@ -6,15 +6,16 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gofrs/uuid"
 	"github.com/gorilla/mux"
 )
 
 type Event struct {
-	Id          uuid.UUID    `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
+	Id          uuid.UUID `json:"id"`
+	Title       string    `json:"title"`
+	Description string    `json:"description"`
 }
 
 type allEvents []Event
@@ -36,8 +37,7 @@ var events = allEvents{}
 // @host      new-events-api.herokuapp.com
 func main() {
 	log.Println("Starting API")
-	// port := os.Getenv("PORT")
-	port := "8080"
+	port := os.Getenv("PORT")
 	router := mux.NewRouter()
 	router.HandleFunc("/", Home)
 	router.HandleFunc("/healt-check", HealthCheck).Methods("GET")
